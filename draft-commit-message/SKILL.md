@@ -1,6 +1,6 @@
 ---
 name: draft-commit-message
-description: Use this skill when the user explicitly signals that the current task/change is finished (e.g. "that's it", "done", "looks good, that's all", "ship it") after code changes were made earlier in the session. Drafts a git commit message summarizing the session's changes and writes it into .git/COMMIT_EDITMSG so it shows up pre-filled in the IDE's source control commit box — it does NOT run `git add` or `git commit`.
+description: Use this skill when the user explicitly signals that the current task/change is finished (e.g. "that's it", "done", "looks good, that's all", "ship it") after code changes were made earlier in the session. Drafts a git commit message summarizing the session's changes and writes it into .git/COMMIT_EDITMSG so it shows up pre-filled in the IDE's source control commit box — and also prints it in the session — it does NOT run `git add` or `git commit`.
 ---
 
 # Draft commit message (no commit)
@@ -18,4 +18,4 @@ Trigger: the user says the task is done, right after you (Claude) made or guided
    - No `Co-Authored-By` trailer — this is a draft the user will review/edit before committing themselves, not a real commit.
 5. Write the message as plain text to `<repo-root>/.git/COMMIT_EDITMSG`, ending with a trailing newline. Overwriting this file is safe — it's just the default message pre-filled into the next commit dialog, not commit history.
 6. Do NOT run `git add`, `git commit`, `git stash`, or any other state-changing git command. This is a preview only.
-7. Tell the user in one short sentence that the draft message is ready in the IDE's source control panel for review before they commit.
+7. In your final reply, print the full commit message verbatim in a fenced code block (so it can be read and copied straight from the session), then add one short sentence saying the same draft is also pre-filled in the IDE's source control panel for review before they commit.
